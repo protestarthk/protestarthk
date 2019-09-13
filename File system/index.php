@@ -9,13 +9,13 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="/css/main.css">
 </head>
 
 <body>
 <div class="vertical-nav bg-white" id="sidebar">
 <div class="py-4 px-3 mb-4 bg-light">
-  <div class="media d-flex align-items-center"><img src="img/flag.png" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm"> 
+  <div class="media d-flex align-items-center"><img src="/img/flag.png" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm"> 
     <!--*
 			  *set左icon就show, 否則不變 
 <?php //echo <img scr='ava/creator_id.jpg' alt='server too many load ar, F5 la' width='65' class='mr-3 rounded-circle imag-thumbnail shadow-sm' ?> 
@@ -28,15 +28,15 @@
 </div>
 <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">即刻使用</p>
 <ul class="nav flex-column bg-white mb-0">
-  <li class="li-protest"> <a href="#" class="nav-link text-dark bg-light"> <i class="fa fa-th-large mr-3 text-primary fa-fw"></i> 首頁 </a> </li>
-  <li class="nav-item"> <a href="#" class="nav-link text-dark "> <i class="fa fa-address-card mr-3 text-primary fa-fw"></i> 文宣資料庫 </a> </li>
+  <li class="li-protest"> <a href="#" class="nav-link text-dark bg-light"> <i class="fa fa-home mr-3 text-primary fa-fw"></i> 首頁 </a> </li>
+  <li class="nav-item"> <a href="#" class="nav-link text-dark "> <i class="fa fa-server mr-3 text-primary fa-fw"></i> 文宣資料庫 </a> </li>
   <li class="nav-item"> <a href="#" class="nav-link text-dark "> <i class="fa fa-cloud-upload-alt mr-3 text-primary fa-fw"></i> 上傳文宣 </a> </li>
   <li class="nav-item"> <a href="#" class="nav-link text-dark "> <i class="fa fa-picture-o mr-3 text-primary fa-fw"></i> 連濃牆專用文宣 </a> </li>
   <li class="nav-item"> <a href="#" class="nav-link text-dark "> <i class="fas fa-search mr-3 text-primary fa-fw"></i> 搜尋文宣</a></li>
-  <li class="nav-item"> <a href="#" class="nav-link text-dark "> <i class="fa fa-area-chart mr-3 text-primary fa-fw"></i> 資料收集原則 </a> </li>
-  <li class="nav-item"> <a href="#" class="nav-link text-dark "> <i class="fa fa-bar-chart mr-3 text-primary fa-fw"></i> 舉報文宣 </a> </li>
-  <li class="nav-item"> <a href="#" class="nav-link text-dark "> <i class="fa fa-pie-chart mr-3 text-primary fa-fw"></i> 錯誤回報 </a> </li>
-  <li class="nav-item"> <a href="#" class="nav-link text-dark "> <i class="fa fa-line-chart mr-3 text-primary fa-fw"></i> 關於我們 </a> </li>
+  <li class="nav-item"> <a href="#" class="nav-link text-dark "> <i class="fa fa-user-secret mr-3 text-primary fa-fw"></i> 資料收集原則 </a> </li>
+  <li class="nav-item"> <a href="#" class="nav-link text-dark "> <i class="fas fa-flag mr-3 text-primary fa-fw"></i> 舉報文宣 </a> </li>
+  <li class="nav-item"> <a href="#" class="nav-link text-dark "> <i class="fas fa-bug mr-3 text-primary fa-fw"></i> 錯誤回報 </a> </li>
+  <li class="nav-item"> <a href="#" class="nav-link text-dark "> <i class="fa fa-question mr-3 text-primary fa-fw"></i> 關於我們 </a> </li>
   </div>
 </ul>
 </div>
@@ -63,6 +63,7 @@ if ( $_COOKIE[ 'lang' ] = "en_us" ) {
 
 ?>
 <!-- 上傳頁面 -->
+	<?php include("function/tag-array.php"); ?>
 <div class="container">
   <div class="page-content p-5" id="content">
     <h2 class="display-4 text-white"><?php echo $lang['upload_header'];?></h2>
@@ -81,8 +82,8 @@ if ( $_COOKIE[ 'lang' ] = "en_us" ) {
     <textarea class="form-control" id="description" rows="3" placeholder="Up to you la"></textarea>
   </div>
 	  <div class="form-group">
-    <label for="exampleFormControlInput1">Tag</label>
-    <input type="text" class="form-control" id="tag" placeholder="777, 69遊行 | split with commer">
+    <label for="exampleFormControlInput1">Tag<?php echo "<span class='badge badge-secondary'>" . $tag_en['police'] . "</span>&nbsp;"; ?></label>
+    <input type="text" class="form-control" id="tag" placeholder="<?php echo "<span class='badge badge-secondary'>" . $tag_en['police'] . "</span>&nbsp;"; ?>">
   </div>
     <div class="row">
       <input type="submit" value="Upload Image" name="submit" class="btn btn-primary mb-2">
