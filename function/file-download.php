@@ -23,18 +23,18 @@ if ( $result->num_rows > 0 ) {
     //print_r( $row ); //Debug用, 咪亂搞
 
     $file_ori_name = $row[ 'filename' ];
-    $file_md5 = $row[ 'md5' ];
+    $upload_file_md5 = $row[ 'md5' ];
 
     //echo $file_type . "<br/>";
     //echo $file_ori_name . "<br/>";
-    //echo $file_md5 . "<br/>";
+    //echo $upload_file_md5 . "<br/>";
     //echo $file_size . "<br/>";
     //echo $file_download . "<br/>";
 
     // Start File Download
     header( 'Content-type: application/octet-stream' );
     header( 'Content-Disposition: attachment; filename="' . $file_ori_name . '"' );
-    readfile( "../img/database/" . $file_md5 );
+    readfile( "../img/database/" . $upload_file_md5 );
   }
 } else {
   echo "ERROR 404冇尼筆文宣啊";
