@@ -40,6 +40,15 @@
   }
 }
 
+a:link {
+color: #FFFFFF;
+}
+a:visited {
+color: #FFFFFF;
+}
+a:hover {
+color: #A6A6A6;
+}
 
 /* #fbb03b main color theme, WIP*/
 body {
