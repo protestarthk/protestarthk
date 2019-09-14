@@ -13,7 +13,9 @@ $lang = array(
   "upload_form_author" => "邊個係作者?",
   "upload_form_author_ph" => "無名",
   "upload_form_desc" => "簡介下文宣",
-  "upload_form_desc_ph" => "20字以內 可以唔填" 
+  "upload_form_desc_ph" => "20字以內 可以唔填",
+  "upload_form_name" => "文宣名",
+  "upload_form_name_ph" => "講下叫咩名" 
 
 );
 

@@ -1,5 +1,5 @@
 <?php 
-//File system  upload section V0.2
+//File system  upload section V0.2.1
 // 
 // This is the V0.2 of Protest Art HK kernel system
 // This source code should not be publish
@@ -7,14 +7,10 @@
 // Thanks to my team 
 // Gloary to Hong Kong , Time Revolution
 // 
-// NEW : Generate artwork id
-// NEW : Allow user to select multiple tags
-// NEW : When author is empty, will assign default for it
-// NEW : Pre-make the language systme
-// FIX : Error when upload file
-// FIX : 
+// FIX : Enhance security of escape symbol
 // TDO : Link tag database into tags selection
-// TDO : 
+// TDO : Insert tags into tagartrel
+// TDO : AJAX intergration 
 ?>
 <?php //initial Database connection and var.
 //SQL col id, artid, filename, caption, md5, author, uploadts
@@ -29,12 +25,17 @@ if ( $conn->connect_error ) {
 
 ?>
 <?php //Handle Post data from poster upload page
-$upload_author = $_POST[ 'author' ]; // varchart for author name
+$upload_author = mysqli_real_escape_string($conn, $_POST[ 'author' ]); // varchart for author name
 if(empty($upload_author)){ $upload_author = '無名';} //If author is empty, change it's name
-$upload_caption = $_POST[ 'caption' ]; // Plain text of caption
+$upload_caption = mysqli_real_escape_string($conn, $_POST[ 'caption' ]); // Plain text of caption
+if(empty($upload_caption)){ $upload_caption = '無介紹,自己諗下';}
+$upload_pname = mysqli_real_escape_string($conn, $_POST[ 'pname' ]); // Varchar of poster name
 $upload_tag = $_POST[ 'tag' ]; //array from $tag[];
-$tag_string = implode(', ', $upload_tag); //Change tag array as comma separate
-
+if(empty($upload_tag)){
+	$upload_tag = '';
+}else{
+	$tag_string = implode(', ', $upload_tag); //Change tag array as comma separate
+}
 
 // ==== Debug Test ====
 //echo "Author : ". $upload_author . "<br/>";
@@ -92,12 +93,13 @@ if ( $uploadOk == 0 ) {
 	  
 	  
 //SQL col artid, filename, caption, md5, author
-    $sql_poster = "INSERT INTO poster (artid,filename,caption,md5,author)VALUES('" . $artid . "','" . $filename . "','" . $upload_caption . "','" . $file_md5 . "', '" . $upload_author . "')";
+    $sql_poster = "INSERT INTO poster (artid,artname,filename,caption,md5,author)VALUES('" . $artid . "','" . $upload_pname . "','" . $filename . "','" . $upload_caption . "','" . $file_md5 . "', '" . $upload_author . "')";
     $sql_tagartrel = "INSERT INTO tagartrel (id, tagarray, artid) VALUES ('', '" . $tag_string . "', '" . $artid . "')";
 	  //echo $sql_poster; //debug use
 	  //echo $sql_tagartrel; //debug use
     if ( $conn->query( $sql_poster ) === TRUE ) {
 		echo "<script>window.location = '../thxforupload.php?id='" . $artid ."';</script>"; //Redirect with artid to Finish Upload pages
+		echo "upload done : " . $artid; //Redirect with artid to Finish Upload pages
 	} else {
 		echo "Error: " . $sql_poster . "<br>" . $conn->error;
 		echo "<BR />妖, upload唔到啊,個Database死左啊";

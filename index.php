@@ -1,5 +1,5 @@
 <!doctype html>
-<?php 
+<!--
 //File system  upload page V0.2
 // 
 // This is the V0.2 of Protest Art HK
@@ -13,7 +13,7 @@
 // FIX : 
 // TDO : Link tag database into tags selection for selection
 // TDO : make the theme better
-?>
+-->
 <html>
 <head>
 <meta charset="utf-8">
@@ -36,40 +36,62 @@
 	
 	?>
 <body>
-<div class="vertical-nav bg-white" id="sidebar">
-<div class="py-4 px-3 mb-4 bg-light">
-  <div class="media d-flex align-items-center"><img src="/img/flag.png" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm"> 
-    <!--*
-			  *set左icon就show, 否則不變 
-<?php //echo <img scr='ava/creator_id.jpg' alt='server too many load ar, F5 la' width='65' class='mr-3 rounded-circle imag-thumbnail shadow-sm' ?> 
-			  *-->
-    <div class="media-body">
-      <h4 class="m-0">Protest Art HK</h4>
-      <p class="font-weight-light text-muted mb-0">Protest Art HK</p>
-    </div>
-  </div>
-</div>
-<p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">即刻使用</p>
-<ul class="nav flex-column bg-white mb-0">
-  <li class="li-protest"> <a href="#" class="nav-link text-dark bg-light"> <i class="fa fa-home mr-3 text-primary fa-fw"></i> 首頁 </a> </li>
-  <li class="nav-item"> <a href="#" class="nav-link text-dark "> <i class="fa fa-server mr-3 text-primary fa-fw"></i> 文宣資料庫 </a> </li>
-  <li class="nav-item"> <a href="#" class="nav-link text-dark "> <i class="fa fa-cloud-upload-alt mr-3 text-primary fa-fw"></i> 上傳文宣 </a> </li>
-  <li class="nav-item"> <a href="#" class="nav-link text-dark "> <i class="fa fa-picture-o mr-3 text-primary fa-fw"></i> 連濃牆專用文宣 </a> </li>
-  <li class="nav-item"> <a href="#" class="nav-link text-dark "> <i class="fas fa-search mr-3 text-primary fa-fw"></i> 搜尋文宣</a></li>
-  <li class="nav-item"> <a href="#" class="nav-link text-dark "> <i class="fa fa-user-secret mr-3 text-primary fa-fw"></i> 資料收集原則 </a> </li>
-  <li class="nav-item"> <a href="#" class="nav-link text-dark "> <i class="fas fa-flag mr-3 text-primary fa-fw"></i> 舉報文宣 </a> </li>
-  <li class="nav-item"> <a href="#" class="nav-link text-dark "> <i class="fas fa-bug mr-3 text-primary fa-fw"></i> 錯誤回報 </a> </li>
-  <li class="nav-item"> <a href="#" class="nav-link text-dark "> <i class="fa fa-question mr-3 text-primary fa-fw"></i> 關於我們 </a> </li>
-  </div>
-</ul>
-</div>
-<!-- 右邊完 -->
+	<div class="container">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Protest Art Hk</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#"><i class="fa fa-home mr-3 text-primary fa-fw"></i> 首頁 <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item dropdown">
+		  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fa fa-picture-o mr-3 text-primary fa-fw"></i>文宣
+        </a>
+		  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="browse.php"><i class="fa fa-server mr-3 text-primary fa-fw"></i> 文宣資料庫 </a>
+        <a class="dropdown-item" href="#"><i class="fa fa-cloud-upload-alt mr-3 text-primary fa-fw"></i> 上傳文宣 </a>
+        <a class="dropdown-item" href="#"><i class="fa fa-picture-o mr-3 text-primary fa-fw"></i> 連濃牆專用文宣 </a>
+      
+		  </div></li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-user-circle mr-3 text-primary fa-fw"></i>搵我地
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#"><i class="fas fa-flag mr-3 text-primary fa-fw"></i> 舉報文宣 </a>
+          <a class="dropdown-item" href="#"><i class="fas fa-bug mr-3 text-primary fa-fw"></i> 錯誤回報 </a>
+          <a class="dropdown-item" href="#"><i class="fa fa-question mr-3 text-primary fa-fw"></i> 關於我們 </a>
+          <a class="dropdown-item" href="#"><i class="fa fa-user-secret mr-3 text-primary fa-fw"></i> 資料收集原則 </a>
+          
+      </li>
+
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+	
+<script type="text/javascript"> //only a-z 0-9 is allow
+    function blocksSpecialChar(e){
+        var k;
+        document.all ? k = e.keyCode : k = e.which;
+        return ((k > 64 && k < 91) || (k > 96 && k < 123) || 
+				k == 8 || k == 32 || (k >= 48 && k <= 57));
+        }
+    </script>
+		
 <!-- 上傳頁面 --> 
 <!-- Tag select -->
 <?php include("function/tag-array.php"); ?>
-<div class="container">
-	<?php echo $_COOKIE['lang']; ?>
+
+	<?php //echo $_COOKIE['lang']; ?>
   <div class="page-content p-5" id="content">
     <h2 class="display-4 text-white"><?php echo $lang['upload_header'];?></h2>
     <div class="separator"</div>
@@ -78,13 +100,17 @@
       <label for="exampleFormControlFile1"><?php echo $lang['upload_header_choose'];?></label>
       <input type="file" class="form-control-file" name="poster">
     </div>
+	  <div class="form-group">
+      <label for="exampleFormControlInput2"><?php echo $lang['upload_form_name']?></label>
+      <input type="text" class="form-control" name="pname" onkeypress="return blockSpecialChar(event)" placeholder="<?php echo $lang['upload_form_name_ph']?>">
+    </div>
     <div class="form-group">
       <label for="exampleFormControlInput1"><?php echo $lang['upload_form_author']?></label>
-      <input type="text" class="form-control" name="author" placeholder="<?php echo $lang['upload_form_author_ph']?>">
+      <input type="text" class="form-control" name="author" onkeypress="return blockSpecialChar(event)" placeholder="<?php echo $lang['upload_form_author_ph']?>">
     </div>
     <div class="form-group">
       <label for="exampleFormControlTextarea1"><?php echo $lang['upload_form_desc']?></label>
-      <textarea class="form-control" name="caption" rows="3" placeholder="<?php echo $lang['upload_form_desc_ph']?>"></textarea>
+      <textarea class="form-control" name="caption" rows="3" onkeypress="return blockSpecialChar(event)" placeholder="<?php echo $lang['upload_form_desc_ph']?>"></textarea>
     </div>
     <div class="form-group">
       <label for="exampleFormControlSelect2">想加乜野Tag?</label>
@@ -99,7 +125,6 @@
       <input type="submit" value="Upload Image" name="submit" class="btn btn-primary mb-2">
     </div>
   </form>
-</div>
 </div>
 </div>
 <script src="js/bootstrap-select.js"></script> 
