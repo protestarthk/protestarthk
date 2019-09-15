@@ -1,13 +1,17 @@
 <!doctype html>
 <html>
 <!--
-//Browse page V0.0.1 Alpha
+//Browse page V0.1 Beta
 // 
-// This is the V0.2 of Protest Art HK
+// This is the V0.1 of Protest Art HK Browse.php
 // This source code should not be publish
 // 
 // Thanks to my team 
 // Gloary to Hong Kong , Time Revolution
+// 
+// NEW : Tag system added
+// Fix : CSS error when showing tags
+// TDO :
 -->
 <head>
 <meta charset="utf-8">
@@ -34,13 +38,7 @@ body {
 <?php //initial Database connection
 //SQL col id, artid, filename, caption, md5, author, uploadts
 require( 'function/db-config.php' );
-// Create connection
-$conn = new mysqli( $db_host, $db_usr, $db_pwd, $db_name );
-// Check connection
-if ( $conn->connect_error ) {
-  die( "Connection failed: " . $conn->connect_error );
-}
-
+require( 'function/tag-get.php' );
 ?>
 <div class="container">
   <?php
@@ -50,9 +48,12 @@ if ( $conn->connect_error ) {
   if ( $result->num_rows > 0 ) {
     echo "<div class='row'>";
     while ( $row = $result->fetch_assoc() ) {
+		$tag_array = getTag($row['artid']);
+		$tag_numb = count($tag_array);
       echo "<div class='col-sm-4'><div class='card'> <img src='img/database/" . $row['md5'] . "' class='card-img-top'>
     <div class='card-body'>
       <h5 class='card-title'>" . $row['artname'] . "</h5><h6 class='card-subtitle mb-2 text-muted'>" . $row['author'] ."</h6>
+	  <h6>"; for($z=0;$z<$tag_numb;$z++){ echo "<span class='badge badge-secondary'>" . $tag_array[$z] . "</span>";} echo "</h6>
       <p class='card-text'>" . $row['caption'] ."</p>
       <a href='" . $row['artid'] . "' class='btn btn-primary'>睇多D</a> </div>
   </div></div>";
